@@ -27,10 +27,7 @@ services:
       - MYSQL_USER=myuser
       - MYSQL_PASSWORD=mypassword
       - MYSQL_ROOT_PASSWORD=mypassword
-      # - MYSQL_DATABASE=test_db
-      # - MYSQL_USER=devuser
-      # - MYSQL_PASSWORD=devpass
-    ports:
-      - "8836:3306"  # uncomment to let the host access the database
+    # ports:
+    #   - "8836:3306"  # uncomment to let the host access the database
     volumes:
       - /half_tmp/Typhoon/mysql_db:/var/lib/mysql
