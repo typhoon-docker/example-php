@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  code:
+    image: example-php
+    container_name: example_php_web
+    depends_on:
+      - db
+    # volumes:
+    #   - /half_tmp/Typhoon/php_public/:/var/www/html/    # uncomment to use host files instead of those in the image
+    #   - ./public/:/var/www/html/
+    working_dir: /var/www/html/
+    links:
+      - db:mysql
+    ports:
+      - "3005:80"
+    expose:
+      - "3005"
+    stdin_open: true
+    tty: true
+
+  db:
+    image: mysql:5.7
+    container_name: example_mysql_db
+    environment:
+      - MYSQL_DATABASE=lolmysql
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=mypassword
+      - MYSQL_ROOT_PASSWORD=mypassword
+      # - MYSQL_DATABASE=test_db
+      # - MYSQL_USER=devuser
+      # - MYSQL_PASSWORD=devpass
+    ports:
+      - "8836:3306"  # uncomment to let the host access the database
+    volumes:
+      - /half_tmp/Typhoon/mysql_db:/var/lib/mysql
