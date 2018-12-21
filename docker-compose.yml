@@ -38,17 +38,16 @@ services:
     image: phpmyadmin/phpmyadmin:4.7
     container_name: example_phpmyadmin
     restart: always
-    environment:
-      - VIRTUAL_HOST=php-phpmyadmin.typhoon.viarezo.fr
-      - LETSENCRYPT_HOST=php-phpmyadmin.typhoon.viarezo.fr
-      - LETSENCRYPT_EMAIL=aymeric.bernard@student.ecp.fr
     links:
       - db:mysql
     environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      MYSQL_USERNAME: root
-      MYSQL_ROOT_PASSWORD: mypassword
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - MYSQL_USERNAME=root
+      - MYSQL_ROOT_PASSWORD=mypassword
+      - VIRTUAL_HOST=php-phpmyadmin.typhoon.viarezo.fr
+      - LETSENCRYPT_HOST=php-phpmyadmin.typhoon.viarezo.fr
+      - LETSENCRYPT_EMAIL=aymeric.bernard@student.ecp.fr
     ports:
       - '3006:80'
 
