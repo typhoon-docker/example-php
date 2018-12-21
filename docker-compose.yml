@@ -4,6 +4,11 @@ services:
   code:
     image: example-php
     container_name: example_php_web
+    restart: always
+    environment:
+      - VIRTUAL_HOST=php.typhoon.viarezo.fr
+      - LETSENCRYPT_HOST=php.typhoon.viarezo.fr
+      - LETSENCRYPT_EMAIL=aymeric.bernard@student.ecp.fr
     depends_on:
       - db
     # volumes:
@@ -14,12 +19,11 @@ services:
       - db:mysql
     ports:
       - "3005:80"
-    stdin_open: true
-    tty: true
 
   db:
     image: mysql:5.7
     container_name: example_mysql_db
+    restart: always
     environment:
       - MYSQL_DATABASE=lolmysql
       - MYSQL_USER=myuser
@@ -33,6 +37,11 @@ services:
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:4.7
     container_name: example_phpmyadmin
+    restart: always
+    environment:
+      - VIRTUAL_HOST=php-phpmyadmin.typhoon.viarezo.fr
+      - LETSENCRYPT_HOST=php-phpmyadmin.typhoon.viarezo.fr
+      - LETSENCRYPT_EMAIL=aymeric.bernard@student.ecp.fr
     links:
       - db:mysql
     environment:
@@ -42,3 +51,8 @@ services:
       MYSQL_ROOT_PASSWORD: mypassword
     ports:
       - '3006:80'
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

@@ -19,9 +19,10 @@
       }
     ?>
 
-    <? if ($_POST['who'] != '') {?>
+    <h1>Typhoon - PHP Page</h1>
 
-      <h1>Hello <? echo htmlspecialchars($_POST['who']); ?></h1>
+    <? if ($_POST['who'] != '') {?>
+      <h2>Hello <? echo htmlspecialchars($_POST['who']); ?></h2>
       <a href="index.php">Greet someone else</a>
       <?php
         try {
