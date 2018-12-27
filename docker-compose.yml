@@ -17,8 +17,6 @@ services:
     working_dir: /var/www/html/
     links:
       - db:mysql
-    ports:
-      - "3005:80"
 
   db:
     image: mysql:5.7
@@ -38,8 +36,6 @@ services:
     image: phpmyadmin/phpmyadmin:4.7
     container_name: example_phpmyadmin
     restart: always
-    links:
-      - db:mysql
     environment:
       - PMA_HOST=db
       - PMA_PORT=3306
@@ -48,8 +44,6 @@ services:
       - VIRTUAL_HOST=php-phpmyadmin.typhoon.viarezo.fr
       - LETSENCRYPT_HOST=php-phpmyadmin.typhoon.viarezo.fr
       - LETSENCRYPT_EMAIL=aymeric.bernard@student.ecp.fr
-    ports:
-      - '3006:80'
 
 networks:
   default:
