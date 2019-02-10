@@ -7,7 +7,7 @@
   <body>
     <?php
       try {
-        $bdd = new PDO('mysql:host=db;port=3306;dbname=lolmysql;charset=utf8', 'myuser', 'mypassword');
+        $bdd = new PDO('mysql:host=mysql;port=3306;dbname=lolmysql;charset=utf8', 'myuser', 'mypassword');
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         $bdd->query("CREATE TABLE IF NOT EXISTS lol (
           id        INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
